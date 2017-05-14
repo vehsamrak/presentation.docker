@@ -1,0 +1,23 @@
+h2.white,
+.white {
+    color: #FFF;
+}
+
+h2.black {
+    color: #000;
+}
+
+h2.white.shadow,
+.white.shadow {
+    text-shadow: 0px 5px 15px rgb(0, 0, 0);
+}
+
+.white.shadow-double {
+    text-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+
+section#what-is-container img {
+    position: absolute;
+    top: 70%;
+    left: 70%;
+}

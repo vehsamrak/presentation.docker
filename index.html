@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Docker</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/shower-ribbon/styles/screen-16x10.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="shower full">
+
+<header class="caption">
+    <h1>Docker</h1>
+</header>
+
+<section class="slide" id="cover">
+    <h2 class="white shadow">Docker</h2>
+    <p><a href="https://github.com/Vehsamrak">Petr Karmashev</a></p>
+
+    <figure>
+        <img class="cover" src="pictures/whale-cover.jpg">
+    </figure>
+
+    <style>
+        #cover h2 {
+            margin: 140px 0;
+            text-align: center;
+            font-size: 140px;
+        }
+
+        #cover p {
+            margin-bottom: 0px;
+            text-align: right;
+            color: #FFF;
+            font-style: italic;
+            font-size: 20px;
+        }
+
+        #cover p a {
+            color: #FFF;
+        }
+    </style>
+</section>
+
+<section class="slide">
+    <h2>Что такое Docker?</h2>
+
+    <p>Платформа для <strong>разработки</strong>, <strong>доставки</strong> и <strong>эксплуатации</strong> приложений.
+        <br>
+        Проект с открытым исходным кодом, который позволяет легко создавать переносимые самодостаточные контейнеры из
+        любого приложения.</p>
+
+    <center>
+        <img src="https://www.docker.com/sites/default/files/dockertwo_0.png" alt="">
+    </center>
+</section>
+
+<section class="slide">
+    <h2>Для чего нужен Docker?</h2>
+
+    <ol>
+        <li class="next">Создание среды для разработки</li>
+        <li class="next">Простая установка приложений</li>
+        <li class="next">Возможность содержать инфраструктуру как код</li>
+        <li class="next">Объектно-ориентированный дизайн для инфраструктуры</li>
+        <li class="next">Деплой приложений</li>
+        <li class="next">Среда для тестирования</li>
+        <li class="next">Параллелизация тестирования</li>
+        <li class="next">Микросервисы</li>
+    </ol>
+</section>
+
+<section class="slide">
+    <h2 class="shout shrink white shadow">Контейнеры?</h2>
+    <figure>
+        <img class="cover" src="pictures/containers.png">
+    </figure>
+</section>
+
+<section class="slide">
+    <figure>
+        <img class="cover" src="pictures/stack-challenge.png">
+    </figure>
+</section>
+
+<section class="slide">
+    <figure>
+        <img class="cover" src="pictures/cargo-transport-pre-1960.png">
+    </figure>
+</section>
+
+<section class="slide">
+    <figure>
+        <img class="cover" src="pictures/shipping_container.jpg">
+    </figure>
+</section>
+
+<section id="what-is-container" class="slide">
+    <h2>Что такое контейнеры?</h2>
+    <figure>
+        <img class="cover" src="pictures/docker-container.jpg">
+    </figure>
+
+    <ol>
+        <li>Изолированная файловая система</li>
+        <li>Изолированные процессы</li>
+        <li>Дешевая виртуализация</li>
+    </ol>
+</section>
+
+<section class="slide">
+    <h2>Структура Docker</h2>
+
+    <ul>
+        <li>Клиент: Docker client</li>
+        <li>Сервер: Docker daemon</li>
+        <li>Хранилище: Registry, DockerHub</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Клиент</h2>
+
+    <p>Отправка команд серверу.</p>
+
+    <ul>
+        <li><code>docker build</code></li>
+        <li><code>docker pull</code></li>
+        <li><code>docker run</code></li>
+        <li><code>docker ps</code></li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Сервер</h2>
+
+    <p>Прием команд от клиента, сборка и скачивание образов, создание и супервайзинг контейнеров.</p>
+
+    <ul>
+        <li>Образы (images)</li>
+        <li>Контейнеры (containers)</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Что такое docker-образ?</h2>
+
+    <p>Стоит разделять две сущности: <strong>образ</strong> и <strong>контейнер</strong>.</p>
+
+    <ul>
+        <li>Образ это упакованное приложение</li>
+        <li>Образ собирается по сценарию или скачивается из хранилища</li>
+        <li>Образ состоит из слоев</li>
+        <li>Контейнер создается из образа</li>
+        <li>Контейнер доступен только на чтение</li>
+        <li>Контейнер существует только пока внутри него существует процесс</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <figure>
+        <img class="cover" src="pictures/layer-pie.png">
+    </figure>
+</section>
+
+<section class="slide">
+    <h2>Отличие от виртуализации</h2>
+
+    <p>В отличии от систем виртуализации, докер не поднимает новую операционную систему, а <u>абстрагирует</u> процессы
+        на запущенной linux-хост системе. Мгновенная загрузка приложений достигается за счет отсутствия оверхеда на
+        загрузку гостевой системы. По той же причине докер-образы занимают меньше памяти на диске.</p>
+</section>
+
+<section class="slide">
+    <h2>Хранилище образов</h2>
+
+    <ul>
+        <li><strong>DockerHub</strong> - сервис. Общедоступные образы вендоров, бесплатно для открытых проектов, платно для закрытых.
+        </li>
+        <li><strong>Registry</strong> - open source приложение. Собственное хранилище.</li>
+        <br>
+        <li>Образы можно экспортировать в файл, хранить и передавать любым удобным способом.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Связь контейнера с внешней средой</h2>
+
+    <ul>
+        <li>Проброс портов</li>
+        <li>Возможность примонтировать отдельный файл</li>
+        <li>Возможность примонтировать директорию</li>
+        <li>Возможность примонтировать данные другого контейнера</li>
+        <li>Возможность примонтировать отдельный контейнер с данными</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Dockerfile. Создание образа</h2>
+
+    <pre>
+        <code>FROM ubuntu:14.04</code>
+
+        <code>RUN apt-get update</code>
+        <code>RUN apt-get install -y --force-yes nginx</code>
+
+        <code>EXPOSE 80</code>
+    </pre>
+
+    <code>docker build . -t nginx</code>
+</section>
+
+<section class="slide">
+    <h2>Создание контейнера из образа</h2>
+
+	<pre>
+	    <code>docker run -d \</code>
+		<code>-v $PWD:/usr/share/nginx/html \</code>
+		<code>-p 81:80 --name=nginx \</code>
+		<code>nginx</code>
+	</pre>
+</section>
+
+<section class="slide">
+	<figure>
+        <img class="cover" src="pictures/rings.png">
+    </figure>
+
+	<span class="next">
+		
+	    <h2 class="shout white shadow">Один контейнер один сервис</h2>
+
+	    <br><br><br><br><br><br><br><br>
+
+		<center>
+			<p class="white shadow-double">Старайтесь разделять приложение по сервисам между контейнерами<br>
+			Это повысит отказоустойчивость, переиспользуемость и удобство работы</p>
+		</center>
+	</span>
+</section>
+
+<section class="slide">
+    <h2>Docker compose</h2>
+
+	<ul>
+		<li>Отдельная утилита</li>
+        <li>Конфигурация, запуск и взаимодействие нескольких контейнеров</li>
+        <li>Проще чем описывать все команды вручную</li>
+        <li>Запуск всей инфраструктуры одной простой командой</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Создание рабочего окружения</h2>
+
+	<ol>
+        <li>Описание нужных зависимостей в docker-compose</li>
+        <li>Подключение локальной директории с кодом</li>
+        <li>Запуск docker-compose up</li>
+        <li>Передача конфигурации коллегам</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Деплой</h2>
+
+    <p>На сервере должен работать docker daemon.</p>
+
+	<ol>
+        <li>Production сервер по команде запрашивает нужные образы из DockerHub или Registry и запускает контейнеры.</li>
+        <li>Build сервер доставляет нужные контейнеры на production, который их затем запускает.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>CI / CD</h2>
+
+	<ul>
+        <li>Воспроизведение production окружения</li>
+        <li>Изолирование процессов тестирования</li>
+        <li>Откат изменений</li>
+        <li>Параллельный запуск тестов</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Какие минусы у Docker?</h2>
+
+	<ul>
+        <li>Незнакомая технология</li>
+        <li>Только для Linux (cgroups)</li>
+        <li>Vendor Lock-In</li>
+        <li>У нас монолит!</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Вопросы</h2>
+    <figure>
+        <blockquote>
+            <p>Не слушай их, Лила. Люди говорили, что я тупой, но я им доказал!</p>
+        </blockquote>
+        <figcaption>Ф.Д. Фрай</figcaption>
+    </figure>
+
+    <center><img src="pictures/mc-hammer.gif"></center>
+</section>
+
+<div class="progress"></div>
+
+<script src="node_modules/shower-core/shower.min.js"></script>
+<!-- Copyright © 2017 Yours Truly, Famous Inc. -->
+
+</body>
+</html>
