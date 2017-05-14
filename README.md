@@ -8,4 +8,4 @@
 
 1. git pull
 1. npm install
-1. serve index.html
+1. open or serve index.html
