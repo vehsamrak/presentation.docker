@@ -21,3 +21,13 @@ section#what-is-container img {
     top: 70%;
     left: 70%;
 }
+
+#golang {
+	position: absolute;
+    right: 100px;
+}
+
+#docker-users {
+	position: absolute;
+    left: 100px;
+}
