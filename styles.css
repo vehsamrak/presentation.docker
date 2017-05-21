@@ -24,7 +24,8 @@ section#what-is-container img {
 
 #golang {
 	position: absolute;
-    right: 100px;
+    left: 600px;
+    top: 290px;
 }
 
 #docker-users {
