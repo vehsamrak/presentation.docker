@@ -17,7 +17,7 @@
 <section class="slide" id="cover">
     <h2 class="white shadow">Docker</h2>
     <p><a href="https://github.com/Vehsamrak">Petr Karmashev</a></p>
-	<small>05.2017</small>
+	<p><small>05.2017</small></p>
 
     <figure>
         <img class="cover" src="pictures/whale-cover.jpg">
@@ -157,10 +157,11 @@
     <p>Отправка команд серверу.</p>
 
     <ul>
-        <li><code>docker build</code></li>
-        <li><code>docker pull</code></li>
-        <li><code>docker run</code></li>
-        <li><code>docker ps</code></li>
+        <li><code>docker build</code> - сборка нового образа из Dockerfile</li>
+        <li><code>docker pull</code> - скачивание готового образа из хранилища</li>
+        <li><code>docker run</code> - создание нового контейнера из образа и его запуск</li>
+        <li><code>docker exec</code> - выполнение произвольной команды в запущенном контейнере</li>
+        <li><code>docker ps</code> - список всех контейнеров</li>
     </ul>
 </section>
 
@@ -168,9 +169,9 @@
     <h2>Хранилище образов</h2>
 
     <ul>
-        <li><strong>DockerHub</strong> - сервис. Общедоступные образы вендоров, бесплатно для открытых проектов, платно для закрытых.
+        <li><strong>DockerHub</strong> - облачный сервис. Общедоступные образы вендоров, бесплатно для открытых проектов, платно для закрытых.
         </li>
-        <li><strong>Registry</strong> - open source приложение. Собственное хранилище.</li>
+        <li><strong>Registry</strong> - open source приложение. Inhouse хранилище.</li>
         <br>
         <li>Образы можно экспортировать в файл, хранить и передавать любым удобным способом.</li>
     </ul>
@@ -189,8 +190,7 @@
 
     <ul>
         <li>Проброс портов</li>
-        <li>Возможность примонтировать отдельный файл</li>
-        <li>Возможность примонтировать директорию</li>
+        <li>Возможность примонтировать отдельный файл или директорию</li>
         <li>Возможность примонтировать данные другого контейнера</li>
         <li>Возможность примонтировать отдельный контейнер с данными</li>
         <li>Возможность примонтировать именованный кусок файловой системы</li>
@@ -220,7 +220,8 @@
 	<pre>
 	    <code>docker run -d \</code>
 		<code>-v $PWD:/usr/share/nginx/html \</code>
-		<code>-p 81:80 --name=nginx \</code>
+        <code>-p 81:80 \</code>
+		<code>--name=nginx \</code>
 		<code>nginx</code>
 	</pre>
 </section>
@@ -232,7 +233,7 @@
 
 	<span class="next">
 		
-	    <h2 class="shout white shadow">Один контейнер один сервис</h2>
+	    <h2 class="shout white shadow">один контейнер один сервис</h2>
 
 	    <br><br><br><br><br><br><br><br>
 
@@ -258,9 +259,9 @@
     <h2>Создание рабочего окружения</h2>
 
 	<ol>
-        <li>Описание нужных зависимостей в docker-compose</li>
+        <li>Описание зависимостей между контейнерами в docker-compose.yml</li>
         <li>Подключение локальной директории с кодом</li>
-        <li>Запуск docker-compose up</li>
+        <li>Запуск <code>docker-compose up -d</code></li>
         <li>Передача конфигурации коллегам</li>
     </ul>
 </section>
@@ -268,11 +269,15 @@
 <section class="slide">
     <h2>Деплой</h2>
 
-    <p>На сервере должен работать docker daemon.</p>
+    <p>
+        На сервере должен работать docker daemon.<br>
+        Возможны различные схемы деплоя контейнеров:
+    </p>
 
 	<ol>
         <li>Production сервер по команде запрашивает нужные образы из DockerHub или Registry и запускает контейнеры.</li>
-        <li>Build сервер доставляет нужные контейнеры на production, который их затем запускает.</li>
+        <li>Build сервер производит сборку и доставляет нужные контейнеры на production, который их затем запускает.</li>
+        <li>Docker-клиент на build сервере передает контекст и команды удаленному docker-daemon на production.</li>
     </ul>
 </section>
 
