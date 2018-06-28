@@ -2,7 +2,7 @@
 
 Для воспроизведения достаточно браузера. Для сборки необходим еще и npm.
 
-### Installating
+### Installation
 
 1. git pull
 1. npm install
